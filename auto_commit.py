@@ -17,7 +17,7 @@ start_time = today.replace(hour=start_hour, minute=0)
 end_time = today.replace(hour=end_hour, minute=0)
 
 # Número de commits
-num_commits = random.randint(20, 80)
+num_commits = random.randint(50, 80)
 
 # Gera horários
 commit_times = []
