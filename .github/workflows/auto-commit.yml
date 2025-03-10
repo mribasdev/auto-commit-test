@@ -3,7 +3,10 @@ name: Auto Commit
 on:
   schedule:
     - cron: '0 11 * * *' # 08:00 em Brasília (UTC-3)
-  workflow_dispatch: # Adiciona a opção de execução manual
+  workflow_dispatch: # Para execução manual
+
+permissions:
+  contents: write # Dá permissão de escrita no repositório
 
 jobs:
   auto-commit:
@@ -22,8 +25,10 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "mribasdev"
-          git config --global user.email "mribasdev@gmail.com"
+          git config --global user.name "Auto Commit Bot"
+          git config --global user.email "bot@example.com"
           git add .
           git commit -m "Auto commit $(date '+%Y-%m-%d %H:%M:%S')" || echo "Nada para commitar"
-          git push
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Usa o token padrão do GitHub Actions
