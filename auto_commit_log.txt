@@ -17,3 +17,4 @@ Commit 16 às 10:53:35
 Commit 17 às 10:53:45
 Commit 18 às 11:10:56
 Commit 19 às 11:18:02
+Commit 20 às 11:25:38
