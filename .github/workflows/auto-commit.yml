@@ -1,0 +1,28 @@
+name: Auto Commit
+
+on:
+  schedule:
+    - cron: '0 11 * * *' # 08:00 em Brasília (UTC-3), ajustado para UTC (11:00)
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run commit script
+        run: python auto_commit.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "mribasdev"
+          git config --global user.email "mribasdev@gmail.com
+          git add .
+          git commit -m "Auto commit $(date '+%Y-%m-%d %H:%M:%S')" || echo "Nada para commitar"
+          git push
